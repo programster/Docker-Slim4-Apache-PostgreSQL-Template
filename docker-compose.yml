@@ -1,0 +1,37 @@
+version: "3.8"
+
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    image: ${REGISTRY}/${DOCKER_IMAGE_NAME}
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+        - db
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=db
+
+  db:
+    image: postgis/postgis:14-3.1
+    container_name: coin-site-db
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+
+volumes:
+  db-data:
+    driver: local

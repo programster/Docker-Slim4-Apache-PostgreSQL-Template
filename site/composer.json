@@ -1,0 +1,29 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "^7.4",
+        "irap/autoloader": "1.*",
+        "programster/abstract-view": "^1.1",
+        "programster/core-libs": "^2.1",
+        "programster/orm-generator": "^1.1",
+        "programster/pgsql-migrations": "^0.3.2",
+        "programster/pgsql-objects": ">=2.2.0",
+        "slim/psr7": "^1.5",
+        "slim/slim": "4.*",
+        "symfony/dotenv": "^5.3"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform" : {
+            "php": "8.1.0",
+            "ext-simplexml": "1",
+            "ext-mbstring": "1",
+            "ext-pgsql": "1",
+            "ext-dom": "1",
+            "ext-xml": "1",
+            "ext-xmlwriter": "1",
+            "ext-curl": "1",
+            "ext-gd": "1",
+            "ext-zip": "1"
+        }
+    }
+}

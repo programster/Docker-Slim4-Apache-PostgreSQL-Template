@@ -1,0 +1,12 @@
+.env
+.sass-cache
+
+# Ingore PHP package files
+site/vendor
+
+# Ignore IDE files
+.idea
+
+# ignore all libreoffice lock files
+.~lock*
+
