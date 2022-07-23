@@ -49,7 +49,7 @@ ENV APACHE_PID_FILE /var/run/apache2/apache2.pid
 # generated PDFs.
 RUN sed -i 's;display_errors = .*;display_errors = On;' /etc/php/8.1/apache2/php.ini && \
     sed -i 's;post_max_size = .*;post_max_size = 100M;' /etc/php/8.1/apache2/php.ini && \
-    sed -i 's;upload_max_filesize = .*;upload_max_filesize = 100M;' /etc/php/8.1/apache2/php.ini \
+    sed -i 's;upload_max_filesize = .*;upload_max_filesize = 100M;' /etc/php/8.1/apache2/php.ini
 
 # Install the cron service to tie up the container's foreground process
 RUN apt-get install cron -y
