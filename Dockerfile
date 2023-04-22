@@ -1,20 +1,20 @@
 # Due to layout of this project, the dockerfile will be moved up two directories and run during
 # the build. Thus when performing any ADD commands, remember that this is "where you are"
 
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteract
-RUN apt-get update && apt-get dist-upgrade -y
 
-# Install PHP 8
-RUN apt-get install -y software-properties-common apt-transport-https \
-  && add-apt-repository ppa:ondrej/php -y;
+# Upgrade and install ondrej PPA
+RUN apt-get update && apt-get dist-upgrade -y \
+    && apt-get install -y software-properties-common apt-transport-https \
+    && add-apt-repository ppa:ondrej/php -y
 
 # Install the relevant packages
 # ghostscript required for merging pdf files together for memory limits.
-RUN apt-get update && apt-get install ghostscript vim apache2 curl libapache2-mod-php8.1 \
-    php8.1-cli php8.1-xml php8.1-mbstring php8.1-curl  \
-    php8.1-pgsql php8.1-zip php8.1-gd -y
+RUN apt-get update && apt-get install ghostscript vim apache2 curl libapache2-mod-php8.2 \
+    php8.2-cli php8.2-xml php8.2-mbstring php8.2-curl  \
+    php8.2-pgsql php8.2-zip php8.2-gd -y
 
 # Remove any  php7.* stuff to prevent composer getting confused.
 RUN apt-get remove php7.* -y && apt-get autoremove -y
@@ -27,12 +27,10 @@ RUN apt-get update \
   && chmod +x /usr/bin/composer
 
 # Enable the php mod we just installed
-RUN a2enmod php8.1
-RUN a2enmod rewrite
+RUN a2enmod php8.2 && a2enmod rewrite
 
-# expose port 80 and 443 (ssl) for the web requests
+# Expose port 80 for the web requests
 EXPOSE 80
-
 
 # Manually set the apache environment variables in order to get apache to work immediately.
 ENV APACHE_RUN_USER www-data
@@ -47,15 +45,15 @@ ENV APACHE_PID_FILE /var/run/apache2/apache2.pid
 # Turn on display errors. We will disable them based on environment. Also bump up limits like the maximum
 # upload size and memory limits, as we want to allow admins to upload massive hoard files and download large
 # generated PDFs.
-RUN sed -i 's;display_errors = .*;display_errors = On;' /etc/php/8.1/apache2/php.ini && \
-    sed -i 's;post_max_size = .*;post_max_size = 100M;' /etc/php/8.1/apache2/php.ini && \
-    sed -i 's;upload_max_filesize = .*;upload_max_filesize = 100M;' /etc/php/8.1/apache2/php.ini
+RUN sed -i 's;display_errors = .*;display_errors = On;' /etc/php/8.2/apache2/php.ini && \
+    sed -i 's;post_max_size = .*;post_max_size = 100M;' /etc/php/8.2/apache2/php.ini && \
+    sed -i 's;upload_max_filesize = .*;upload_max_filesize = 100M;' /etc/php/8.2/apache2/php.ini
 
 # Install the cron service to tie up the container's foreground process
 RUN apt-get install cron -y
 
 # Add the site's code to the container.
-# We could mount it with volume, but by having it in the container, deployment is easier.
+# When in development, use a volume to overwrite this area.
 COPY --chown=root:www-data site /var/www/site
 
 # Install PHP packages
