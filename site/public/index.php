@@ -33,8 +33,8 @@ $errorMiddleware->setErrorHandler(\Slim\Exception\HttpNotFoundException::class, 
     bool $logErrorDetails
 ) {
     $response = new \Slim\Psr7\Response();
-    $body = new View404(); // change this View404 file to your custom 404 page.
-    $response->getBody()->write($view->render());
+    $view = new View404(); // change this View404 file to your custom 404 page.
+    $response->getBody()->write((string) $view); // cast the view to a string, or call ->render() on the object.
     return $response->withStatus(404);
 });
 
