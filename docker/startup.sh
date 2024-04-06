@@ -7,7 +7,7 @@ php /root/create-env-file.php /.env
 
 
 # Run migrations after waiting for the database to be available.
-/usr/bin/sleep 10
+php /var/www/site/scripts/wait-for-database.php
 php /var/www/site/scripts/migrate.php
 
 

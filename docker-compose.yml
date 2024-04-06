@@ -1,6 +1,3 @@
-version: "3.8"
-
-
 services:
   app:
     build:
@@ -14,10 +11,10 @@ services:
     depends_on:
         - db
     environment:
-      - ENVIRONMENT=${ENVIRONMENT}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=${DB_NAME}
+      - ENVIRONMENT
+      - DB_USER
+      - DB_PASSWORD
+      - DB_NAME
       - DB_HOST=db
 
   db:
