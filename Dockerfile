@@ -1,8 +1,11 @@
 FROM debian:12
 
 
+# Set the timezone, to fix possible timezone issue
+ENV TZ=Europe/London
 ENV DEBIAN_FRONTEND=noninteract
 
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && apt-get dist-upgrade -y
 
