@@ -18,9 +18,11 @@ class InitialMigration implements Programster\PgsqlMigrations\MigrationInterface
         $db = new PgSqlConnection($connectionResource);
 
         $query =
-            'CREATE TABLE "MyTableName" (
-                id uuid NOT NULL PRIMARY KEY,
-                "my_column_name" varchar(255) NOT NULL
+            'CREATE TABLE "user" (
+                "id" uuid NOT NULL PRIMARY KEY,
+                "first_name" varchar(255) NOT NULL,
+                "last_name" varchar(255) NOT NULL,
+                "email" varchar(255) NOT NULL
             )';
 
         $result = $db->query($query);
@@ -30,7 +32,7 @@ class InitialMigration implements Programster\PgsqlMigrations\MigrationInterface
     public function down($connectionResource): void
     {
         $db = new PgSqlConnection($connectionResource);
-        $query = 'DROP TABLE "MyTableName"';
+        $query = 'DROP TABLE "user"';
         $result = $db->query($query);
     }
 }
