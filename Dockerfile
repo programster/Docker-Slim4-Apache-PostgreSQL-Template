@@ -26,14 +26,14 @@ RUN a2enmod php8.2 && a2enmod rewrite
 
 
 # Manually set the apache environment variables in order to get apache to work immediately.
-ENV APACHE_RUN_USER www-data
-ENV APACHE_RUN_GROUP www-data
-ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_RUN_USER=www-data
+ENV APACHE_RUN_GROUP=www-data
+ENV APACHE_LOG_DIR=/var/log/apache2
 ENV APACHE_RUN_DIR=/var/run/apache2
 
 # It appears that the new apache requires these env vars as well
-ENV APACHE_LOCK_DIR /var/lock/apache2
-ENV APACHE_PID_FILE /var/run/apache2/apache2.pid
+ENV APACHE_LOCK_DIR=/var/lock/apache2
+ENV APACHE_PID_FILE=/var/run/apache2/apache2.pid
 
 
 # Set display errors to on, we can decide in the application layer whether to hide or not based on the environment.
