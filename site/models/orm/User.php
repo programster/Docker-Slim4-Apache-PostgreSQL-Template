@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 
+use Programster\PgsqlObjects\TableInterface;
 
 class User extends \Programster\PgsqlObjects\AbstractTableRowObject
 {
@@ -16,7 +17,7 @@ class User extends \Programster\PgsqlObjects\AbstractTableRowObject
     private string $m_email;
 
 
-    public function getTableHandler(): \Programster\PgsqlObjects\TableInterface
+    public function getTableHandler(): TableInterface
     {
         return UserTable::getInstance();
     }
@@ -38,4 +39,10 @@ class User extends \Programster\PgsqlObjects\AbstractTableRowObject
             'email' => function($x) { $this->m_email = $x; },
         ];
     }
+
+
+    # Accessors
+    public function getFirstName() : string { return $this->m_firstName; }
+    public function getLastName() : string { return $this->m_lastName; }
+    public function getEmail() : string { return $this->m_email; }
 }

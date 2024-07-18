@@ -41,7 +41,7 @@ class UserTable extends AbstractTable
 
     public function generateId(): mixed
     {
-        \Programster\PgsqlObjects\Utils::generateUuid();
+        return \Programster\PgsqlObjects\Utils::generateUuid();
     }
 
     public function isIdGeneratedInDatabase(): bool
