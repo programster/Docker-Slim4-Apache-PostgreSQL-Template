@@ -10,18 +10,30 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && apt-get dist-upgrade -y
 
 
+# Upgrade and install ondrej PPA
+RUN apt-get update && apt-get dist-upgrade -y \
+    && apt-get install -y apt-transport-https ca-certificates curl git gpg
+
+
+# Add the repository for later versions of PHP.
+RUN curl -fsSL https://packages.sury.org/php/apt.gpg \
+  | gpg --dearmor -o /usr/share/keyrings/sury-php.gpg \
+  && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/sury-php.gpg] https://packages.sury.org/php/ bookworm main" \
+  > /etc/apt/sources.list.d/php.list
+
+
 # Expose port 80 for the web requests
 EXPOSE 80
 
 
 # Install the relevant packages
-RUN apt-get update && apt-get install vim apache2 curl libapache2-mod-php8.2 git unzip supervisor cron composer \
-    php8.2-cli php8.2-xml php8.2-mbstring php8.2-curl php8.2-bcmath  \
-    php8.2-pgsql php8.2-zip php8.2-gd -y
+RUN apt-get update && apt-get install vim apache2 curl libapache2-mod-php8.4 git unzip supervisor cron composer \
+    php8.4-cli php8.4-xml php8.4-mbstring php8.4-curl php8.4-bcmath  \
+    php8.4-pgsql php8.4-zip php8.4-gd -y
 
 
 # Enable the php mod we just installed
-RUN a2enmod php8.2 && a2enmod rewrite
+RUN a2enmod php8.4 && a2enmod rewrite
 
 
 
@@ -40,9 +52,9 @@ ENV APACHE_PID_FILE=/var/run/apache2/apache2.pid
 # Also bump up limits like the maximum
 # upload size and memory limits, as we want to allow admins to upload massive hoard files and download large
 # generated PDFs.
-RUN sed -i 's;display_errors = .*;display_errors = On;' /etc/php/8.2/apache2/php.ini && \
-    sed -i 's;post_max_size = .*;post_max_size = 100M;' /etc/php/8.2/apache2/php.ini && \
-    sed -i 's;upload_max_filesize = .*;upload_max_filesize = 100M;' /etc/php/8.2/apache2/php.ini
+RUN sed -i 's;display_errors = .*;display_errors = On;' /etc/php/8.4/apache2/php.ini && \
+    sed -i 's;post_max_size = .*;post_max_size = 100M;' /etc/php/8.4/apache2/php.ini && \
+    sed -i 's;upload_max_filesize = .*;upload_max_filesize = 100M;' /etc/php/8.4/apache2/php.ini
 
 
 # Add the site's code to the container.
