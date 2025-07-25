@@ -5,11 +5,12 @@
         "programster/abstract-view": "^1.1",
         "programster/core-libs": "^2.1",
         "programster/orm-generator": "^1.1",
-        "programster/pgsql-migrations": "^0.3.2",
+        "programster/pgsql-migrations": "^1.1",
         "programster/pgsql-objects": ">=2.2.0",
         "slim/psr7": "^1.5",
         "slim/slim": "4.*",
-        "symfony/dotenv": "^5.3"
+        "symfony/dotenv": "^5.3",
+        "ext-pgsql": "*"
     },
     "config": {
         "sort-packages": true,

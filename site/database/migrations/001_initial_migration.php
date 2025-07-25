@@ -10,10 +10,11 @@ use Programster\PgsqlLib\PgSqlConnection;
 class InitialMigration implements Programster\PgsqlMigrations\MigrationInterface
 {
     /**
-     * @param $connectionResource
-     * @return void
+     * Run queries for upgrading the database version.
+     * @throws \Programster\PgsqlLib\Exceptions\ExceptionQueryError - if there is an issue with the query.
+     * @throws \Programster\PgsqlLib\Exceptions\ExceptionConnectionError - if database is not actually connected.
      */
-    public function up($connectionResource): void
+    public function up(\PgSql\Connection $connectionResource): void
     {
         $db = new PgSqlConnection($connectionResource);
 
@@ -25,14 +26,18 @@ class InitialMigration implements Programster\PgsqlMigrations\MigrationInterface
                 "email" varchar(255) NOT NULL
             )';
 
-        $result = $db->query($query);
+        $db->query($query);
     }
 
 
-    public function down($connectionResource): void
+    /**
+     * Run queries for downgrading the database version.
+     * @throws \Programster\PgsqlLib\Exceptions\ExceptionQueryError - if there is an issue with the query.
+     * * @throws \Programster\PgsqlLib\Exceptions\ExceptionConnectionError - if database is not actually connected.
+ */
+    public function down(\PgSql\Connection $connectionResource): void
     {
         $db = new PgSqlConnection($connectionResource);
-        $query = 'DROP TABLE "user"';
-        $result = $db->query($query);
+        $db->query('DROP TABLE "user"');
     }
 }

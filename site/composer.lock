@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb2c41900ce2c799a2622306d581d0f2",
+    "content-hash": "ea468a192717a252046351639c02be65",
     "packages": [
         {
             "name": "brick/math",
@@ -589,16 +589,16 @@
         },
         {
             "name": "programster/core-libs",
-            "version": "2.5.1",
+            "version": "2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/programster/package-core-libs.git",
-                "reference": "f8dbfab3b05bb439b875f82e18b995bd97f7a4a5"
+                "reference": "38ef85d1ea2ad08f1dc84b36d19799035cf83774"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/programster/package-core-libs/zipball/f8dbfab3b05bb439b875f82e18b995bd97f7a4a5",
-                "reference": "f8dbfab3b05bb439b875f82e18b995bd97f7a4a5",
+                "url": "https://api.github.com/repos/programster/package-core-libs/zipball/38ef85d1ea2ad08f1dc84b36d19799035cf83774",
+                "reference": "38ef85d1ea2ad08f1dc84b36d19799035cf83774",
                 "shasum": ""
             },
             "require": {
@@ -638,9 +638,9 @@
                 "library"
             ],
             "support": {
-                "source": "https://github.com/programster/package-core-libs/tree/2.5.1"
+                "source": "https://github.com/programster/package-core-libs/tree/2.5.2"
             },
-            "time": "2025-05-02T14:22:06+00:00"
+            "time": "2025-07-24T14:45:45+00:00"
         },
         {
             "name": "programster/orm-generator",
@@ -744,20 +744,21 @@
         },
         {
             "name": "programster/pgsql-migrations",
-            "version": "0.3.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/programster/package-pgsql-migrations.git",
-                "reference": "2d351af8eec3b01171e7278f75cb0d1a529ae26e"
+                "reference": "494b95c26a8fbe44ae77c0a5cf474a273d4cb4de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/programster/package-pgsql-migrations/zipball/2d351af8eec3b01171e7278f75cb0d1a529ae26e",
-                "reference": "2d351af8eec3b01171e7278f75cb0d1a529ae26e",
+                "url": "https://api.github.com/repos/programster/package-pgsql-migrations/zipball/494b95c26a8fbe44ae77c0a5cf474a273d4cb4de",
+                "reference": "494b95c26a8fbe44ae77c0a5cf474a273d4cb4de",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.4.0"
+                "ext-pgsql": "*",
+                "php": ">=8.2.0"
             },
             "type": "library",
             "autoload": {
@@ -787,9 +788,9 @@
             ],
             "support": {
                 "issues": "https://github.com/programster/package-pgsql-migrations/issues",
-                "source": "https://github.com/programster/package-pgsql-migrations/tree/0.3.2"
+                "source": "https://github.com/programster/package-pgsql-migrations/tree/1.1.0"
             },
-            "time": "2021-07-04T10:03:31+00:00"
+            "time": "2025-01-26T13:21:58+00:00"
         },
         {
             "name": "programster/pgsql-objects",
@@ -1985,7 +1986,9 @@
     "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {},
+    "platform": {
+        "ext-pgsql": "*"
+    },
     "platform-dev": {},
     "platform-overrides": {
         "php": "8.4.0",
