@@ -1,21 +1,22 @@
 {
     "require": {
+        "ext-pgsql": "*",
         "guzzlehttp/guzzle": "^7.4",
         "irap/autoloader": "1.*",
         "programster/abstract-view": "^1.1",
         "programster/core-libs": "^2.1",
+        "programster/log": "^2.2",
         "programster/orm-generator": "^1.1",
         "programster/pgsql-migrations": "^1.1",
         "programster/pgsql-objects": ">=2.2.0",
         "slim/psr7": "^1.5",
         "slim/slim": "4.*",
-        "symfony/dotenv": "^5.3",
-        "ext-pgsql": "*"
+        "symfony/dotenv": "^5.3"
     },
     "config": {
         "sort-packages": true,
         "platform" : {
-            "php": "8.4.0",
+            "php": "8.5.0",
             "ext-simplexml": "1",
             "ext-mbstring": "1",
             "ext-pgsql": "1",

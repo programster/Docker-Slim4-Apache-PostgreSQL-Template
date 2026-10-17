@@ -35,6 +35,7 @@ $errorMiddleware->setErrorHandler(\Slim\Exception\HttpNotFoundException::class, 
     $response = new \Slim\Psr7\Response();
     $view = new View404(); // change this View404 file to your custom 404 page.
     $response->getBody()->write((string) $view); // cast the view to a string, or call ->render() on the object.
+    ServiceFactory::getLogger()->warning("404 page served", ["path" => $request->getUri()->getPath()]);
     return $response->withStatus(404);
 });
 
