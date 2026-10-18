@@ -23,7 +23,7 @@ services:
       - HOST_GROUP_ID
 
   db:
-    image: postgres:14-bullseye
+    image: postgres:18-trixie
     container_name: db
     restart: always
     environment:
